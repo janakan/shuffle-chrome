@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name": "Shuffle",
+  "description": "Discover the web",
+  "version": "1.0",
+  "background":{
+    "scripts":[
+      "background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon":"icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches":["*://*/*"],
+      "js":[
+        "inject.js"
+      ],
+      "css":[
+        "inject.css"
+      ]
+    }
+  ],
+  "externally_connectable":{
+    "matches":[
+      "*://localhost/*"
+    ]
+  },
+  "permissions": [
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "unlimitedStorage",
+    "notifications",
+    "*://*/*"
+  ]
+}
