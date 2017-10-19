@@ -19,7 +19,8 @@
       ],
       "css":[
         "inject.css"
-      ]
+      ],
+      "run_at":"document_end"
     }
   ],
   "externally_connectable":{

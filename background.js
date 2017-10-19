@@ -1,5 +1,21 @@
 console.log("Hello world");
 
+
+chrome.webRequest.onHeadersReceived.addListener(
+  function (details) {
+    for (var i = 0; i < details.responseHeaders.length; ++i) {
+      if (details.responseHeaders[i].name.toLowerCase() == 'x-frame-options') {
+        details.responseHeaders.splice(i, 1);
+        return {
+          responseHeaders: details.responseHeaders
+        };
+      }
+    }
+  }, {urls: ["<all_urls>"]}, ["blocking", "responseHeaders"]);
+
+
+
+
 var subscriptions = [
   "news",
   "funny",
@@ -47,6 +63,52 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
       break;
   }
 })
+
+var i = 0;
+function updateIcon(){
+  var colors = ["yellow","red","blue","purple"]
+  i++;
+  var color = 'hsl(' + i + ', 100%, 50%)';
+  console.log(color);
+  var canvas = document.createElement("canvas");
+  canvas.width = 150;
+  canvas.height = 150;
+  var ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = color;
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.arc(75, 75, 70, 0, Math.PI * 2); // Outer circle
+  ctx.stroke();
+  ctx.fill();
+
+  ctx.fillStyle = "black";
+  ctx.strokeStyle = "black";
+  ctx.beginPath();
+  ctx.arc(50,60,10,0,Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "black";
+  ctx.strokeStyle = "black";
+  ctx.beginPath();
+  ctx.arc(100,60,10,0,Math.PI * 2);
+  ctx.fill();
+
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.moveTo(40,100);
+  ctx.lineTo(110,110);
+  ctx.stroke();
+
+  chrome.browserAction.setIcon({
+    imageData: ctx.getImageData(0, 0, 150, 150)
+  });
+}
+
+//setInterval(updateIcon,100);
+console.log("SUCCESS!");
+
 
 /*
 setTimeout(function(){

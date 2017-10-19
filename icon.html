@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello</title>
+  </head>
+  <body>
+    <canvas id="tutorial" width="150" height="150" style="border:solid 1px #ccc;"></canvas>
+    <script>
+      var canvas = document.getElementById('tutorial');
+      var ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = "yellow";
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(75, 75, 70, 0, Math.PI * 2); // Outer circle
+      ctx.stroke();
+      ctx.fill();
+
+      ctx.fillStyle = "black";
+      ctx.strokeStyle = "black";
+      ctx.beginPath();
+      ctx.arc(50,60,10,0,Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = "black";
+      ctx.strokeStyle = "black";
+      ctx.beginPath();
+      ctx.arc(100,60,10,0,Math.PI * 2);
+      ctx.fill();
+
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(40,100);
+      ctx.lineTo(110,110);
+      ctx.stroke();
+
+    </script>
+  </body>
+</html>
