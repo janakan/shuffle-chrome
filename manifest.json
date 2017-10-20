@@ -5,6 +5,7 @@
   "version": "0.0.4",
   "background":{
     "scripts":[
+      "libs/google-analytics-bundle.js",
       "background.js"
     ]
   },

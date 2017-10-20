@@ -11,41 +11,5 @@ shuffle-progress
   text-transform: none;
   background-color:yellow;
   color:black;
-}
-
-/*
-shuffle-circle
-{
-  position:fixed;
-  top:0px;
-  left:0px;
-  right:0px;
-  z-index:100000000000;
-  width:0px;
-  height:0px;
-  border-radius:50%;
-  background-color:yellow;
-  pointer-events:none;
-  opacity:0.5;
-}
-
-shuffle-cover
-{
-  display:none;
-  left:0px;
-  right:0px;
-  top:0px;
-  bottom:0px;
-  z-index:100000000001;
-  background-color:yellow;
-  position:fixed;
-  display:flex;
   visibility: hidden;
-  align-items: center;
-  justify-content: center;
-  color:black;
-  font-size:30px;
-  font-family:"Arial";
-  opacity:0.5;
 }
-*/
