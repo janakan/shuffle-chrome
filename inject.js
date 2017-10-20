@@ -25,7 +25,7 @@ window.addEventListener("mousedown",function(e){
 });
 window.addEventListener("mouseup",function(){
   clearInterval(countup);
-  progressBar.width = 0;
+  progressBar.style.width = "20%";
   progressBar.style.display = "none";
 });
 

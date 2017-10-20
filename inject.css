@@ -5,10 +5,12 @@ shuffle-progress
   left:0px;
   right:0px;
   z-index:100000000000;
-  background-color:yellow;
+  background-color:lightyellow;
   display:none;
   font-weight:bold;
   font-family:"Arial";
   color:black;
   padding:10px;
+  font-size:15px;
+  text-transform: none;
 }
