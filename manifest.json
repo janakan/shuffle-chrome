@@ -2,11 +2,12 @@
   "manifest_version": 2,
   "name": "Boredom Button",
   "description": "Discover the web",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "background":{
     "scripts":[
       "libs/google-analytics-bundle.js",
-      "background.js"
+      "background/background.js",
+      "background/content.js"
     ]
   },
   "browser_action": {
