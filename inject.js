@@ -35,15 +35,4 @@ window.addEventListener("mousedown",activate);
 window.addEventListener("mouseup",reset);
 window.addEventListener("mousemove",reset);
 window.addEventListener("click",reset);
-
-/*
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-61221904-15"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-61221904-15');
-</script>
-*/
+window.addEventListener("contextmenu",reset);

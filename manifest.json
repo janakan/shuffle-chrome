@@ -2,14 +2,13 @@
   "manifest_version": 2,
   "name": "Boredom Button",
   "description": "Discover the web",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "background":{
     "scripts":[
       "libs/google-analytics-bundle.js",
       "background.js"
     ]
   },
-  "omnibox": { "keyword" : "x" },
   "browser_action": {
     "default_icon":"icon.png"
   },
