@@ -13,3 +13,32 @@ shuffle-progress
   color:black;
   visibility: hidden;
 }
+
+shuffle-button
+{
+  position:fixed;
+  bottom:0px;
+  left:50%;
+  margin-left:-100px;
+  width:200px;
+  padding:10px;
+  background-color:white;
+  color:black;
+  text-transform: none;
+  font-family: Arial,sans-serif;
+  border:solid 1px #333;
+  text-align:center;
+  z-index:100000000000;
+  cursor: pointer;
+  margin-bottom:-1px;
+  font-size:14px;
+}
+shuffle-button:hover
+{
+  background-color:yellow;
+}
+shuffle-button span
+{
+  float:right;
+  color:#aaa;
+}

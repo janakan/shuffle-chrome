@@ -3,10 +3,28 @@ var progressBar = document.createElement("shuffle-progress");
 progressBar.innerHTML = "";
 document.body.appendChild(progressBar);
 
-chrome.runtime.sendMessage({type:"visit",hostname:window.location.hostname});
 
-function shuffle(){
-  chrome.runtime.sendMessage({type:"random"},function(item){
+chrome.runtime.sendMessage({type:"visit",hostname:window.location.hostname},function(enabled){
+  if(enabled){
+    var shuffleButton = document.createElement("shuffle-button");
+    shuffleButton.innerHTML = "Shuffle";
+    shuffleButton.addEventListener("click",function(){
+      shuffle("bigbutton");
+    });
+    document.body.appendChild(shuffleButton);
+    var closeButton = document.createElement("span");
+    closeButton.innerHTML = "X";
+    shuffleButton.appendChild(closeButton);
+    closeButton.addEventListener("click",function(e){
+      chrome.runtime.sendMessage({type:"disable"});
+      e.stopPropagation();
+      shuffleButton.style.display = "none";
+    })
+  }
+});
+
+function shuffle(trigger){
+  chrome.runtime.sendMessage({type:"random",trigger:trigger},function(item){
     window.location.href = item.url;
   });
 }
@@ -20,7 +38,7 @@ function activate(e){
     if(i == 40){
       clearInterval(countup);
       active = false;
-      shuffle();
+      shuffle("mouse");
     }
   },15);
 }
