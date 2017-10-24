@@ -36,3 +36,11 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
       break;
   }
 })
+
+if(!localStorage.prompt1){
+  localStorage.prompt1 = "true";
+  chrome.tabs.create({
+    url:"http://localhost:5000/about.html",
+    active:false
+  });
+}
