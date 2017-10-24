@@ -3,7 +3,7 @@ var tracker = service.getTracker("UA-61221904-15");
 tracker.sendAppView("Launch");
 tracker.sendEvent(versionId,"Start");
 
-var versionId = "Chrome-V2";
+var versionId = "Chrome-V3";
 
 chrome.runtime.onInstalled.addListener(function(details){
   if(details.reason == "install"){

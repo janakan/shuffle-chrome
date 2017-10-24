@@ -2,26 +2,7 @@ var countup;
 var progressBar = document.createElement("shuffle-progress");
 progressBar.innerHTML = "";
 document.body.appendChild(progressBar);
-
-
-chrome.runtime.sendMessage({type:"visit",hostname:window.location.hostname},function(enabled){
-  if(enabled){
-    var shuffleButton = document.createElement("shuffle-button");
-    shuffleButton.innerHTML = "Shuffle";
-    shuffleButton.addEventListener("click",function(){
-      shuffle("bigbutton");
-    });
-    document.body.appendChild(shuffleButton);
-    var closeButton = document.createElement("span");
-    closeButton.innerHTML = "X";
-    shuffleButton.appendChild(closeButton);
-    closeButton.addEventListener("click",function(e){
-      chrome.runtime.sendMessage({type:"disable"});
-      e.stopPropagation();
-      shuffleButton.style.display = "none";
-    })
-  }
-});
+chrome.runtime.sendMessage({type:"visit",hostname:window.location.hostname});
 
 function shuffle(trigger){
   chrome.runtime.sendMessage({type:"random",trigger:trigger},function(item){
