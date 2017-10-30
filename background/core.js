@@ -1,6 +1,6 @@
 var service = analytics.getService("boredom_button");
 var tracker = service.getTracker("UA-61221904-15");
-var versionId = "Chrome-V4";
+var versionId = "Chrome-V5";
 
 tracker.sendAppView("Launch");
 tracker.sendEvent(versionId,"Start");
@@ -26,7 +26,10 @@ chrome.browserAction.onClicked.addListener(function(tab){
 
 var enabled = true;
 
-chrome.tabs.onUpdated.addListener(function(tabId,changeInfo){
+chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
+  if(tab.status == "complete" && !tab.url){
+    tracker.sendEvent(versionId,"NewTab");
+  }
   if(changeInfo.url){
     var u = new URL(changeInfo.url);
     tracker.sendEvent(versionId,"Visit",u.hostname);
@@ -39,16 +42,6 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
       tracker.sendEvent(versionId,"Shuffle",request.trigger);
       sendResponse(randomItem());
       break;
-    case "visit":
-      tracker.sendEvent(versionId,"Visit",request.hostname,(enabled ? 1 :0));
-      sendResponse(enabled);
-      break;
-    case "disable":
-      tracker.sendEvent(versionId,"Disable");
-      enabled = false;
-      break;
-    default:
-      console.log("Unknown request type",request);
-      break;
+    default:break;
   }
 })

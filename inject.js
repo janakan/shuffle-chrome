@@ -2,7 +2,6 @@ var countup;
 var progressBar = document.createElement("shuffle-progress");
 progressBar.innerHTML = "";
 document.body.appendChild(progressBar);
-//chrome.runtime.sendMessage({type:"visit",hostname:window.location.hostname});
 
 function shuffle(trigger){
   chrome.runtime.sendMessage({type:"random",trigger:trigger},function(item){
