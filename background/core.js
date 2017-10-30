@@ -1,9 +1,9 @@
 var service = analytics.getService("boredom_button");
 var tracker = service.getTracker("UA-61221904-15");
+var versionId = "Chrome-V4";
+
 tracker.sendAppView("Launch");
 tracker.sendEvent(versionId,"Start");
-
-var versionId = "Chrome-V3";
 
 chrome.runtime.onInstalled.addListener(function(details){
   if(details.reason == "install"){
@@ -25,6 +25,13 @@ chrome.browserAction.onClicked.addListener(function(tab){
 });
 
 var enabled = true;
+
+chrome.tabs.onUpdated.addListener(function(tabId,changeInfo){
+  if(changeInfo.url){
+    var u = new URL(changeInfo.url);
+    tracker.sendEvent(versionId,"Visit",u.hostname);
+  }
+})
 
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
   switch(request.type){
