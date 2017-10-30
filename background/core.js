@@ -1,6 +1,6 @@
 var service = analytics.getService("boredom_button");
 var tracker = service.getTracker("UA-61221904-15");
-var versionId = "Chrome-V5";
+var versionId = "Chrome-V6";
 
 tracker.sendAppView("Launch");
 tracker.sendEvent(versionId,"Start");
@@ -25,6 +25,7 @@ chrome.browserAction.onClicked.addListener(function(tab){
 });
 
 var enabled = true;
+var searchHistory = {};
 
 chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
   if(tab.status == "complete" && !tab.url){
@@ -32,7 +33,20 @@ chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
   }
   if(changeInfo.url){
     var u = new URL(changeInfo.url);
-    tracker.sendEvent(versionId,"Visit",u.hostname);
+    var hostname = u.hostname;
+    tracker.sendEvent(versionId,"Visit",hostname);
+    if(hostname == "www.youtube.com"){
+      tracker.sendEvent(versionId,"Video");
+    }
+  }
+  if(tab.status == "loading" && tab.url && tab.url.indexOf("google.") != -1 && tab.url.indexOf("/search") != -1 && tab.url.indexOf("q=") != -1){
+    if(!searchHistory[tab.url]){
+      tracker.sendEvent(versionId,"GoogleSearch");
+      searchHistory[tab.url] = 1;
+      setTimeout(function(){
+        delete searchHistory[tab.url];
+      },5000);
+    }
   }
 })
 
