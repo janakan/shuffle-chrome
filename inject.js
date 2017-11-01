@@ -34,3 +34,7 @@ window.addEventListener("mouseup",reset);
 window.addEventListener("mousemove",reset);
 window.addEventListener("click",reset);
 window.addEventListener("contextmenu",reset);
+
+window.addEventListener("blur",function(){
+  chrome.runtime.sendMessage({type:"blur"});
+})

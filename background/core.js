@@ -1,6 +1,6 @@
 var service = analytics.getService("boredom_button");
 var tracker = service.getTracker("UA-61221904-15");
-var versionId = "Chrome-V6";
+var versionId = "Chrome-V7";
 
 tracker.sendAppView("Launch");
 tracker.sendEvent(versionId,"Start");
@@ -56,6 +56,21 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
       tracker.sendEvent(versionId,"Shuffle",request.trigger);
       sendResponse(randomItem());
       break;
+    case "blur":
+      var active = (sender.tab.windowId == currentWindowId) && (sender.tab.active);
+      if(active){
+        tracker.sendEvent(versionId,"OmnibarFocus");
+        console.log("OmnibarFocusEvent",versionId);
+      }
+      break;
     default:break;
   }
 })
+
+var currentWindowId = -1;
+chrome.windows.onFocusChanged.addListener(function(windowId){
+  currentWindowId = windowId;
+});
+chrome.windows.getCurrent(function(window){
+  currentWindowId = window.id;
+});
